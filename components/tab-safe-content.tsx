@@ -9,15 +9,14 @@ type Props = {
 export default function TabSafeContent({ children }: Props) {
   const insets = useSafeAreaInsets();
 
-  // Espaciado adicional más generoso para asegurar que no hay solapamiento
-  const extraBottomSpace = Platform.OS === 'ios' ? 120 : 100;
-
+  // Como el tab bar ya no está en posición absoluta, solo necesitamos padding básico
   return (
     <View 
       style={[
         styles.container,
         {
-          paddingBottom: Math.max(insets.bottom + extraBottomSpace, 100),
+          paddingTop: insets.top,
+          paddingBottom: Platform.OS === 'ios' ? 10 : 5, // Solo un pequeño padding adicional
         }
       ]}
     >

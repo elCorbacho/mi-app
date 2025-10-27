@@ -19,32 +19,29 @@ export default function TabLayout() {
         headerShown: false,
         tabBarButton: HapticTab,
 
-        // ===== CONFIGURACIÓN DEFINITIVA PARA EVITAR SOLAPAMIENTO =====
+        // ===== CONFIGURACIÓN MEJORADA SIN SOLAPAMIENTO =====
         tabBarStyle: {
-          paddingBottom: Platform.OS === 'ios' ? insets.bottom + 10 : insets.bottom + 8,
-          paddingTop: 12,
-          height: Platform.OS === 'ios' ? 70 + insets.bottom : 60 + insets.bottom,
+          paddingBottom: Platform.OS === 'ios' ? insets.bottom + 5 : insets.bottom + 3,
+          paddingTop: 8,
+          height: Platform.OS === 'ios' ? 60 + insets.bottom : 55 + insets.bottom,
           backgroundColor: colorScheme === 'dark' ? '#1a1a1a' : '#ffffff',
           borderTopWidth: 1,
           borderTopColor: colorScheme === 'dark' ? '#333' : '#e0e0e0',
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          elevation: 15,
+          // Removido position: 'absolute' para evitar solapamiento
+          elevation: 8,
           shadowColor: '#000',
-          shadowOffset: { width: 0, height: -4 },
-          shadowOpacity: 0.2,
-          shadowRadius: 12,
+          shadowOffset: { width: 0, height: -2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 8,
         },
         tabBarLabelStyle: {
-          fontSize: 11,
+          fontSize: 12,
           fontWeight: '600',
-          marginBottom: Platform.OS === 'ios' ? 4 : 2,
-          marginTop: 2,
+          marginBottom: Platform.OS === 'ios' ? 2 : 1,
+          marginTop: 1,
         },
         tabBarIconStyle: {
-          marginTop: Platform.OS === 'ios' ? 6 : 4,
+          marginTop: Platform.OS === 'ios' ? 4 : 2,
         },
         // ===== FIN CONFIGURACIÓN SOLAPAMIENTO =====
       }}>
@@ -56,7 +53,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="perfil"
         options={{
           title: 'Perfil',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
