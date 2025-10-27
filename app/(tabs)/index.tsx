@@ -1,27 +1,30 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, View } from 'react-native';
 
+import AnimatedView from '@/components/animated-view';
 import CurrentTime from '@/components/current-time';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
+import TabSafeContent from '@/components/tab-safe-content';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link } from 'expo-router';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#E8F4FD', dark: '#1A2B3A' }}
-      headerImage={
-        <View style={styles.headerContainer}>
-          <Ionicons name="medical" size={80} color="#FFFFFF" />
-          <ThemedText type="title" style={styles.headerTitle}>
-            Anatomía Patológica
-          </ThemedText>
-          <ThemedText style={styles.headerSubtitle}>
-            Sistema de Gestión Hospitalaria
-          </ThemedText>
-        </View>
-      }>
+    <TabSafeContent>
+      <ParallaxScrollView
+        headerBackgroundColor={{ light: '#E8F4FD', dark: '#1A2B3A' }}
+        headerImage={
+          <View style={styles.headerContainer}>
+            <Ionicons name="medical" size={80} color="#FFFFFF" />
+            <ThemedText type="title" style={styles.headerTitle}>
+              Anatomía Patológica
+            </ThemedText>
+            <ThemedText style={styles.headerSubtitle}>
+              Sistema de Gestión Hospitalaria
+            </ThemedText>
+          </View>
+        }>
       
       {/* Usuario logueado */}
       <ThemedView style={styles.statsContainer}>
@@ -37,61 +40,77 @@ export default function HomeScreen() {
         </View>
         
         {/* Estadísticas del día */}
-        <ThemedView style={styles.statsContainer}>
-          <ThemedText type="subtitle" style={styles.sectionTitle}>Resumen del día</ThemedText>
-          <View style={styles.statsRow}>
-            <View style={styles.statCard}>
-              <ThemedText type="defaultSemiBold" style={styles.statNumber}>12</ThemedText>
-              <ThemedText style={styles.statLabel}>Casos pendientes</ThemedText>
+        <AnimatedView animation="slideUp" delay={300}>
+          <ThemedView style={styles.statsContainer}>
+            <ThemedText type="subtitle" style={styles.sectionTitle}>Resumen del día</ThemedText>
+            <View style={styles.statsRow}>
+              <AnimatedView animation="scale" delay={400}>
+                <View style={styles.statCard}>
+                  <ThemedText type="defaultSemiBold" style={styles.statNumber}>12</ThemedText>
+                  <ThemedText style={styles.statLabel}>Casos pendientes</ThemedText>
+                </View>
+              </AnimatedView>
+              <AnimatedView animation="scale" delay={500}>
+                <View style={styles.statCard}>
+                  <ThemedText type="defaultSemiBold" style={styles.statNumber}>8</ThemedText>
+                  <ThemedText style={styles.statLabel}>Informes completados</ThemedText>
+                </View>
+              </AnimatedView>
+              <AnimatedView animation="scale" delay={600}>
+                <View style={styles.statCard}>
+                  <ThemedText type="defaultSemiBold" style={styles.statNumber}>3</ThemedText>
+                  <ThemedText style={styles.statLabel}>Urgentes</ThemedText>
+                </View>
+              </AnimatedView>
             </View>
-            <View style={styles.statCard}>
-              <ThemedText type="defaultSemiBold" style={styles.statNumber}>8</ThemedText>
-              <ThemedText style={styles.statLabel}>Informes completados</ThemedText>
-            </View>
-            <View style={styles.statCard}>
-              <ThemedText type="defaultSemiBold" style={styles.statNumber}>3</ThemedText>
-              <ThemedText style={styles.statLabel}>Urgentes</ThemedText>
-            </View>
-          </View>
-        </ThemedView>
+          </ThemedView>
+        </AnimatedView>
 
         {/* Acciones rápidas */}
-        <ThemedView style={styles.quickActionsContainer}>
-          <ThemedText type="subtitle" style={styles.sectionTitle}>Acciones rápidas</ThemedText>
-          
-          <Link href="/modal" style={styles.actionButton}>
-            <View style={styles.actionContent}>
-              <Ionicons name="add-circle" size={24} color="#2E7BC6" />
-              <View style={styles.actionText}>
-                <ThemedText type="defaultSemiBold">Nuevo caso</ThemedText>
-                <ThemedText style={styles.actionDescription}>Registrar nueva biopsia o citología</ThemedText>
-              </View>
-              <Ionicons name="chevron-forward" size={20} color="#666" />
-            </View>
-          </Link>
+        <AnimatedView animation="slideUp" delay={700}>
+          <ThemedView style={styles.quickActionsContainer}>
+            <ThemedText type="subtitle" style={styles.sectionTitle}>Acciones rápidas</ThemedText>
+            
+            <AnimatedView animation="slideRight" delay={800}>
+              <Link href="/modal" style={styles.actionButton}>
+                <View style={styles.actionContent}>
+                  <Ionicons name="add-circle" size={24} color="#2E7BC6" />
+                  <View style={styles.actionText}>
+                    <ThemedText type="defaultSemiBold">Nuevo caso</ThemedText>
+                    <ThemedText style={styles.actionDescription}>Registrar nueva biopsia o citología</ThemedText>
+                  </View>
+                  <Ionicons name="chevron-forward" size={20} color="#666" />
+                </View>
+              </Link>
+            </AnimatedView>
 
-          <Link href="/modal" style={styles.actionButton}>
-            <View style={styles.actionContent}>
-              <Ionicons name="search" size={24} color="#2E7BC6" />
-              <View style={styles.actionText}>
-                <ThemedText type="defaultSemiBold">Buscar casos</ThemedText>
-                <ThemedText style={styles.actionDescription}>Consultar historial de pacientes</ThemedText>
-              </View>
-              <Ionicons name="chevron-forward" size={20} color="#666" />
-            </View>
-          </Link>
+            <AnimatedView animation="slideRight" delay={900}>
+              <Link href="/modal" style={styles.actionButton}>
+                <View style={styles.actionContent}>
+                  <Ionicons name="search" size={24} color="#2E7BC6" />
+                  <View style={styles.actionText}>
+                    <ThemedText type="defaultSemiBold">Buscar casos</ThemedText>
+                    <ThemedText style={styles.actionDescription}>Consultar historial de pacientes</ThemedText>
+                  </View>
+                  <Ionicons name="chevron-forward" size={20} color="#666" />
+                </View>
+              </Link>
+            </AnimatedView>
 
-          <Link href="/modal" style={styles.actionButton}>
-            <View style={styles.actionContent}>
-              <Ionicons name="document-text" size={24} color="#2E7BC6" />
-              <View style={styles.actionText}>
-                <ThemedText type="defaultSemiBold">Informes pendientes</ThemedText>
-                <ThemedText style={styles.actionDescription}>Revisar y completar diagnósticos</ThemedText>
-              </View>
-              <Ionicons name="chevron-forward" size={20} color="#666" />
-            </View>
-          </Link>
-        </ThemedView>
+            <AnimatedView animation="slideRight" delay={1000}>
+              <Link href="/modal" style={styles.actionButton}>
+                <View style={styles.actionContent}>
+                  <Ionicons name="document-text" size={24} color="#2E7BC6" />
+                  <View style={styles.actionText}>
+                    <ThemedText type="defaultSemiBold">Informes pendientes</ThemedText>
+                    <ThemedText style={styles.actionDescription}>Revisar y completar diagnósticos</ThemedText>
+                  </View>
+                  <Ionicons name="chevron-forward" size={20} color="#666" />
+                </View>
+              </Link>
+            </AnimatedView>
+          </ThemedView>
+        </AnimatedView>
 
         {/* Casos urgentes */}
         <ThemedView style={styles.urgentContainer}>
@@ -119,6 +138,7 @@ export default function HomeScreen() {
       </ThemedView>
 
     </ParallaxScrollView>
+    </TabSafeContent>
   );
 }
 

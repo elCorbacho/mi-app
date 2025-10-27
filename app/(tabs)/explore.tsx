@@ -4,8 +4,10 @@ import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
 
+import AnimatedView from '@/components/animated-view';
 import CurrentTime from '@/components/current-time';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
+import TabSafeContent from '@/components/tab-safe-content';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
@@ -86,52 +88,56 @@ export default function ProfileScreen() {
   ];
 
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#E8F4FD', dark: '#1A2B3A' }}
-      headerImage={
-        <View style={styles.headerContainer}>
-          <View style={styles.avatarContainer}>
-            <Ionicons name="person" size={60} color="#FFFFFF" />
+    <TabSafeContent>
+      <ParallaxScrollView
+        headerBackgroundColor={{ light: '#E8F4FD', dark: '#1A2B3A' }}
+        headerImage={
+          <View style={styles.headerContainer}>
+            <View style={styles.avatarContainer}>
+              <Ionicons name="person" size={60} color="#FFFFFF" />
+            </View>
+            <ThemedText type="title" style={styles.headerTitle}>
+              Mi Perfil
+            </ThemedText>
           </View>
-          <ThemedText type="title" style={styles.headerTitle}>
-            Mi Perfil
-          </ThemedText>
-        </View>
-      }>
+        }>
       
       {/* Información del usuario logueado */}
-      <ThemedView style={styles.section}>
-        <View style={styles.sectionHeader}>
-          <ThemedText type="subtitle" style={styles.sectionTitle}>
-            Usuario Activo
-          </ThemedText>
-          <CurrentTime 
-            fontSize={12}
-            color="#666"
-            style={styles.sectionTime}
-          />
-        </View>
-        
-        <View style={styles.infoCard}>
-          <View style={styles.infoRow}>
-            <Ionicons name="mail" size={20} color="#2E7BC6" />
-            <View style={styles.infoText}>
-              <ThemedText style={styles.infoLabel}>Correo electrónico</ThemedText>
-              <ThemedText type="defaultSemiBold" style={styles.infoValue}>
-                {userEmail || 'No disponible'}
-              </ThemedText>
+      <AnimatedView animation="slideUp" delay={300}>
+        <ThemedView style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <ThemedText type="subtitle" style={styles.sectionTitle}>
+              Usuario Activo
+            </ThemedText>
+            <CurrentTime 
+              fontSize={12}
+              color="#666"
+              style={styles.sectionTime}
+            />
+          </View>
+          
+          <View style={styles.infoCard}>
+            <View style={styles.infoRow}>
+              <Ionicons name="mail" size={20} color="#2E7BC6" />
+              <View style={styles.infoText}>
+                <ThemedText style={styles.infoLabel}>Correo electrónico</ThemedText>
+                <ThemedText type="defaultSemiBold" style={styles.infoValue}>
+                  {userEmail || 'No disponible'}
+                </ThemedText>
+              </View>
             </View>
           </View>
-        </View>
-      </ThemedView>
+        </ThemedView>
+      </AnimatedView>
 
       {/* Datos del perfil */}
-      <ThemedView style={styles.section}>
-        <ThemedText type="subtitle" style={styles.sectionTitle}>
-          Información Personal
-        </ThemedText>
-        
-        <View style={styles.infoCard}>
+      <AnimatedView animation="slideUp" delay={500}>
+        <ThemedView style={styles.section}>
+          <ThemedText type="subtitle" style={styles.sectionTitle}>
+            Información Personal
+          </ThemedText>
+          
+          <View style={styles.infoCard}>
           <View style={styles.infoRow}>
             <Ionicons name="person-outline" size={20} color="#2E7BC6" />
             <View style={styles.infoText}>
@@ -193,12 +199,14 @@ export default function ProfileScreen() {
           </View>
         </View>
       </ThemedView>
+      </AnimatedView>
 
       {/* Privilegios y permisos */}
-      <ThemedView style={styles.section}>
-        <ThemedText type="subtitle" style={styles.sectionTitle}>
-          Privilegios y Permisos
-        </ThemedText>
+      <AnimatedView animation="slideUp" delay={700}>
+        <ThemedView style={styles.section}>
+          <ThemedText type="subtitle" style={styles.sectionTitle}>
+            Privilegios y Permisos
+          </ThemedText>
         
         <View style={styles.privilegesContainer}>
           {privilegios.map((privilegio, index) => (
@@ -231,16 +239,20 @@ export default function ProfileScreen() {
           ))}
         </View>
       </ThemedView>
+      </AnimatedView>
 
       {/* Botón de cerrar sesión */}
-      <ThemedView style={styles.section}>
-        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-          <Ionicons name="log-out-outline" size={20} color="#F44336" />
-          <ThemedText style={styles.logoutText}>Cerrar Sesión</ThemedText>
-        </TouchableOpacity>
-      </ThemedView>
+      <AnimatedView animation="bounce" delay={900}>
+        <ThemedView style={styles.section}>
+          <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+            <Ionicons name="log-out-outline" size={20} color="#F44336" />
+            <ThemedText style={styles.logoutText}>Cerrar Sesión</ThemedText>
+          </TouchableOpacity>
+        </ThemedView>
+      </AnimatedView>
 
     </ParallaxScrollView>
+    </TabSafeContent>
   );
 }
 

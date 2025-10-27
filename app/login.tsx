@@ -11,6 +11,7 @@ import {
   View,
 } from 'react-native';
 
+import AnimatedView from '@/components/animated-view';
 import CurrentTime from '@/components/current-time';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -71,73 +72,94 @@ export default function LoginScreen() {
 
   return (
     <ThemedView style={styles.container}>
-      {/* Hora actual en la parte superior */}
-      <View style={styles.timeHeader}>
-        <CurrentTime 
-          style={styles.currentTime}
-          fontSize={16}
-          color="#2E7BC6"
-        />
-      </View>
+      {/* Hora actual en la parte superior con animación */}
+      <AnimatedView animation="fade" delay={200}>
+        <View style={styles.timeHeader}>
+          <CurrentTime 
+            style={styles.currentTime}
+            fontSize={16}
+            color="#2E7BC6"
+          />
+        </View>
+      </AnimatedView>
 
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={styles.formContainer}
       >
-        <ThemedText type="title" style={styles.title}>
-          Anatomía Patológica
-        </ThemedText>
-        <ThemedText type="subtitle" style={styles.subtitle}>
-          Sistema de Gestión Hospitalaria
-        </ThemedText>
+        {/* Título principal con animación */}
+        <AnimatedView animation="slideUp" delay={300}>
+          <ThemedText type="title" style={styles.title}>
+            Anatomía Patológica
+          </ThemedText>
+          <ThemedText type="subtitle" style={styles.subtitle}>
+            Sistema de Gestión Hospitalaria
+          </ThemedText>
+        </AnimatedView>
 
-        <ThemedText style={styles.label}>Correo electrónico</ThemedText>
-        <TextInput
-          value={email}
-          onChangeText={setEmail}
-          placeholder="tucorreo@ejemplo.com"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          style={styles.input}
-          placeholderTextColor="#9AA0A6"
-        />
-
-        <ThemedText style={[styles.label, { marginTop: 12 }]}>Contraseña</ThemedText>
-        <View style={styles.passwordRow}>
+        {/* Formulario con animaciones escalonadas */}
+        <AnimatedView animation="slideRight" delay={500}>
+          <ThemedText style={styles.label}>Correo electrónico</ThemedText>
           <TextInput
-            value={password}
-            onChangeText={setPassword}
-            placeholder="********"
-            secureTextEntry={!showPassword}
+            value={email}
+            onChangeText={setEmail}
+            placeholder="tucorreo@ejemplo.com"
+            keyboardType="email-address"
             autoCapitalize="none"
-            style={[styles.input, { flex: 1, marginRight: 8 }]}
+            style={styles.input}
             placeholderTextColor="#9AA0A6"
           />
+        </AnimatedView>
+
+        <AnimatedView animation="slideRight" delay={600}>
+          <ThemedText style={[styles.label, { marginTop: 12 }]}>Contraseña</ThemedText>
+          <View style={styles.passwordRow}>
+            <TextInput
+              value={password}
+              onChangeText={setPassword}
+              placeholder="********"
+              secureTextEntry={!showPassword}
+              autoCapitalize="none"
+              style={[styles.input, { flex: 1, marginRight: 8 }]}
+              placeholderTextColor="#9AA0A6"
+            />
+            <TouchableOpacity
+              onPress={() => setShowPassword((s) => !s)}
+              style={styles.showButton}
+              activeOpacity={0.7}
+            >
+              <ThemedText type="link">{showPassword ? 'Ocultar' : 'Mostrar'}</ThemedText>
+            </TouchableOpacity>
+          </View>
+        </AnimatedView>
+
+        {/* Error message con animación */}
+        {error ? (
+          <AnimatedView animation="bounce" delay={100}>
+            <ThemedText style={styles.error}>{error}</ThemedText>
+          </AnimatedView>
+        ) : null}
+
+        {/* Botón de login con animación */}
+        <AnimatedView animation="scale" delay={800}>
           <TouchableOpacity
-            onPress={() => setShowPassword((s) => !s)}
-            style={styles.showButton}
-            activeOpacity={0.7}
+            style={[styles.button, !isValid || loading ? styles.buttonDisabled : undefined]}
+            onPress={onSubmit}
+            disabled={!isValid || loading}
+            activeOpacity={0.8}
           >
-            <ThemedText type="link">{showPassword ? 'Ocultar' : 'Mostrar'}</ThemedText>
+            {loading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <ThemedText style={styles.buttonText}>Iniciar sesión</ThemedText>
+            )}
           </TouchableOpacity>
-        </View>
+        </AnimatedView>
 
-        {error ? <ThemedText style={styles.error}>{error}</ThemedText> : null}
-
-        <TouchableOpacity
-          style={[styles.button, !isValid || loading ? styles.buttonDisabled : undefined]}
-          onPress={onSubmit}
-          disabled={!isValid || loading}
-          activeOpacity={0.8}
-        >
-          {loading ? (
-            <ActivityIndicator color="#fff" />
-          ) : (
-            <ThemedText style={styles.buttonText}>Iniciar sesión</ThemedText>
-          )}
-        </TouchableOpacity>
-
-        <ThemedText style={styles.small}>¿No tienes cuenta? Regístrate</ThemedText>
+        {/* Texto de registro con animación */}
+        <AnimatedView animation="fade" delay={1000}>
+          <ThemedText style={styles.small}>¿No tienes cuenta? Regístrate</ThemedText>
+        </AnimatedView>
       </KeyboardAvoidingView>
     </ThemedView>
   );
