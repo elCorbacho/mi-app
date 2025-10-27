@@ -2,13 +2,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-    ActivityIndicator,
-    KeyboardAvoidingView,
-    Platform,
-    StyleSheet,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
@@ -33,9 +33,9 @@ export default function LoginScreen() {
       setError('Introduce un email válido');
       return;
     }
-    // permitir contraseña especial '1234' (por petición) o contraseñas de 6+ caracteres
-    if (!(password === '1234' || password.length >= 6)) {
-      setError('La contraseña debe ser "1234" o tener al menos 6 caracteres');
+    // SOLO permitir la contraseña exacta '1234'
+    if (password !== '1234') {
+      setError('Contraseña incorrecta');
       return;
     }
 
@@ -58,7 +58,7 @@ export default function LoginScreen() {
     }
   };
 
-  const isValid = validateEmail(email) && (password === '1234' || password.length >= 6);
+  const isValid = validateEmail(email); // Solo validar email para habilitar botón
 
   return (
     <ThemedView style={styles.container}>

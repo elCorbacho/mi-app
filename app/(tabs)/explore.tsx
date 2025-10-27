@@ -43,11 +43,10 @@ export default function ProfileScreen() {
             try {
               // Limpiar los datos de sesión
               await AsyncStorage.removeItem('userEmail');
-              // Opcional: limpiar otros datos de sesión si los hay
-              // await AsyncStorage.clear(); // Solo si quieres limpiar todo
               
-              // Navegar de vuelta al login
-              router.replace('/');
+              // Resetear completamente la navegación y ir al login
+              router.dismiss();
+              router.replace('/' as never);
             } catch (error) {
               console.log('Error during logout:', error);
             }
