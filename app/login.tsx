@@ -16,11 +16,19 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
 export default function LoginScreen() {
+  // ================= useState HOOKS =================
+  // Estado para manejar el email del usuario
   const [email, setEmail] = useState('');
+  // Estado para manejar la contraseña del usuario  
   const [password, setPassword] = useState('');
+  // Estado para mostrar/ocultar el indicador de carga
   const [loading, setLoading] = useState(false);
+  // Estado para mostrar/ocultar la contraseña
   const [showPassword, setShowPassword] = useState(false);
+  // Estado para manejar mensajes de error
   const [error, setError] = useState<string | null>(null);
+  // ================= FIN useState HOOKS =================
+  
   const router = useRouter();
 
   const validateEmail = (value: string) => {

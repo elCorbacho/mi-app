@@ -16,15 +16,22 @@ export default function CurrentTime({
   fontSize = 14,
   color = '#666'
 }: Props) {
+  // ================= useState HOOKS =================
+  // Estado para almacenar la hora actual, se inicializa con la fecha actual
   const [currentTime, setCurrentTime] = useState(new Date());
+  // ================= FIN useState HOOKS =================
 
+  // ================= useEffect HOOKS =================
+  // useEffect para crear un timer que actualice la hora cada segundo
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000); // Actualizar cada segundo
+      setCurrentTime(new Date()); // Actualizar la hora cada 1000ms (1 segundo)
+    }, 1000);
 
+    // Función de cleanup para limpiar el timer cuando el componente se desmonte
     return () => clearInterval(timer);
-  }, []);
+  }, []); // Array vacío [] = solo se ejecuta una vez al montar
+  // ================= FIN useEffect HOOKS =================
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString('es-ES', {
