@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, View } from 'react-native';
 
+import CurrentTime from '@/components/current-time';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -12,91 +13,109 @@ export default function HomeScreen() {
       headerBackgroundColor={{ light: '#E8F4FD', dark: '#1A2B3A' }}
       headerImage={
         <View style={styles.headerContainer}>
-          <Ionicons name="medical" size={80} color="#2E7BC6" style={styles.headerIcon} />
+          <Ionicons name="medical" size={80} color="#FFFFFF" />
           <ThemedText type="title" style={styles.headerTitle}>
             Anatomía Patológica
+          </ThemedText>
+          <ThemedText style={styles.headerSubtitle}>
+            Sistema de Gestión Hospitalaria
           </ThemedText>
         </View>
       }>
       
-      {/* Estadísticas del día */}
+      {/* Usuario logueado */}
       <ThemedView style={styles.statsContainer}>
-        <ThemedText type="subtitle" style={styles.sectionTitle}>Resumen del día</ThemedText>
-        <View style={styles.statsRow}>
-          <View style={styles.statCard}>
-            <ThemedText type="defaultSemiBold" style={styles.statNumber}>12</ThemedText>
-            <ThemedText style={styles.statLabel}>Casos pendientes</ThemedText>
-          </View>
-          <View style={styles.statCard}>
-            <ThemedText type="defaultSemiBold" style={styles.statNumber}>8</ThemedText>
-            <ThemedText style={styles.statLabel}>Informes completados</ThemedText>
-          </View>
-          <View style={styles.statCard}>
-            <ThemedText type="defaultSemiBold" style={styles.statNumber}>3</ThemedText>
-            <ThemedText style={styles.statLabel}>Urgentes</ThemedText>
-          </View>
+        <View style={styles.userHeader}>
+          <ThemedText type="subtitle" style={styles.sectionTitle}>
+            Bienvenido
+          </ThemedText>
+          <CurrentTime 
+            fontSize={12}
+            color="#666"
+            style={styles.sectionTime}
+          />
         </View>
-      </ThemedView>
-
-      {/* Acciones rápidas */}
-      <ThemedView style={styles.quickActionsContainer}>
-        <ThemedText type="subtitle" style={styles.sectionTitle}>Acciones rápidas</ThemedText>
         
-        <Link href="/modal" style={styles.actionButton}>
-          <View style={styles.actionContent}>
-            <Ionicons name="add-circle" size={24} color="#2E7BC6" />
-            <View style={styles.actionText}>
-              <ThemedText type="defaultSemiBold">Nuevo caso</ThemedText>
-              <ThemedText style={styles.actionDescription}>Registrar nueva biopsia o citología</ThemedText>
+        {/* Estadísticas del día */}
+        <ThemedView style={styles.statsContainer}>
+          <ThemedText type="subtitle" style={styles.sectionTitle}>Resumen del día</ThemedText>
+          <View style={styles.statsRow}>
+            <View style={styles.statCard}>
+              <ThemedText type="defaultSemiBold" style={styles.statNumber}>12</ThemedText>
+              <ThemedText style={styles.statLabel}>Casos pendientes</ThemedText>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#666" />
-          </View>
-        </Link>
-
-        <Link href="/modal" style={styles.actionButton}>
-          <View style={styles.actionContent}>
-            <Ionicons name="search" size={24} color="#2E7BC6" />
-            <View style={styles.actionText}>
-              <ThemedText type="defaultSemiBold">Buscar casos</ThemedText>
-              <ThemedText style={styles.actionDescription}>Consultar historial de pacientes</ThemedText>
+            <View style={styles.statCard}>
+              <ThemedText type="defaultSemiBold" style={styles.statNumber}>8</ThemedText>
+              <ThemedText style={styles.statLabel}>Informes completados</ThemedText>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#666" />
-          </View>
-        </Link>
-
-        <Link href="/modal" style={styles.actionButton}>
-          <View style={styles.actionContent}>
-            <Ionicons name="document-text" size={24} color="#2E7BC6" />
-            <View style={styles.actionText}>
-              <ThemedText type="defaultSemiBold">Informes pendientes</ThemedText>
-              <ThemedText style={styles.actionDescription}>Revisar y completar diagnósticos</ThemedText>
+            <View style={styles.statCard}>
+              <ThemedText type="defaultSemiBold" style={styles.statNumber}>3</ThemedText>
+              <ThemedText style={styles.statLabel}>Urgentes</ThemedText>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#666" />
           </View>
-        </Link>
-      </ThemedView>
+        </ThemedView>
 
-      {/* Casos urgentes */}
-      <ThemedView style={styles.urgentContainer}>
-        <ThemedText type="subtitle" style={styles.sectionTitle}>Casos urgentes</ThemedText>
-        
-        <View style={styles.caseCard}>
-          <View style={styles.urgentBadge}>
-            <ThemedText style={styles.urgentText}>URGENTE</ThemedText>
-          </View>
-          <ThemedText type="defaultSemiBold">Caso #AP-2024-1456</ThemedText>
-          <ThemedText style={styles.caseDetails}>Biopsia de mama - Paciente: M. García</ThemedText>
-          <ThemedText style={styles.caseTime}>Recibido hace 2 horas</ThemedText>
-        </View>
+        {/* Acciones rápidas */}
+        <ThemedView style={styles.quickActionsContainer}>
+          <ThemedText type="subtitle" style={styles.sectionTitle}>Acciones rápidas</ThemedText>
+          
+          <Link href="/modal" style={styles.actionButton}>
+            <View style={styles.actionContent}>
+              <Ionicons name="add-circle" size={24} color="#2E7BC6" />
+              <View style={styles.actionText}>
+                <ThemedText type="defaultSemiBold">Nuevo caso</ThemedText>
+                <ThemedText style={styles.actionDescription}>Registrar nueva biopsia o citología</ThemedText>
+              </View>
+              <Ionicons name="chevron-forward" size={20} color="#666" />
+            </View>
+          </Link>
 
-        <View style={styles.caseCard}>
-          <View style={styles.urgentBadge}>
-            <ThemedText style={styles.urgentText}>URGENTE</ThemedText>
+          <Link href="/modal" style={styles.actionButton}>
+            <View style={styles.actionContent}>
+              <Ionicons name="search" size={24} color="#2E7BC6" />
+              <View style={styles.actionText}>
+                <ThemedText type="defaultSemiBold">Buscar casos</ThemedText>
+                <ThemedText style={styles.actionDescription}>Consultar historial de pacientes</ThemedText>
+              </View>
+              <Ionicons name="chevron-forward" size={20} color="#666" />
+            </View>
+          </Link>
+
+          <Link href="/modal" style={styles.actionButton}>
+            <View style={styles.actionContent}>
+              <Ionicons name="document-text" size={24} color="#2E7BC6" />
+              <View style={styles.actionText}>
+                <ThemedText type="defaultSemiBold">Informes pendientes</ThemedText>
+                <ThemedText style={styles.actionDescription}>Revisar y completar diagnósticos</ThemedText>
+              </View>
+              <Ionicons name="chevron-forward" size={20} color="#666" />
+            </View>
+          </Link>
+        </ThemedView>
+
+        {/* Casos urgentes */}
+        <ThemedView style={styles.urgentContainer}>
+          <ThemedText type="subtitle" style={styles.sectionTitle}>Casos urgentes</ThemedText>
+          
+          <View style={styles.caseCard}>
+            <View style={styles.urgentBadge}>
+              <ThemedText style={styles.urgentText}>URGENTE</ThemedText>
+            </View>
+            <ThemedText type="defaultSemiBold">Caso #AP-2024-1456</ThemedText>
+            <ThemedText style={styles.caseDetails}>Biopsia de mama - Paciente: M. García</ThemedText>
+            <ThemedText style={styles.caseTime}>Recibido hace 2 horas</ThemedText>
           </View>
-          <ThemedText type="defaultSemiBold">Caso #AP-2024-1457</ThemedText>
-          <ThemedText style={styles.caseDetails}>Citología cervical - Paciente: L. Rodríguez</ThemedText>
-          <ThemedText style={styles.caseTime}>Recibido hace 4 horas</ThemedText>
-        </View>
+
+          <View style={styles.caseCard}>
+            <View style={styles.urgentBadge}>
+              <ThemedText style={styles.urgentText}>URGENTE</ThemedText>
+            </View>
+            <ThemedText type="defaultSemiBold">Caso #AP-2024-1457</ThemedText>
+            <ThemedText style={styles.caseDetails}>Citología cervical - Paciente: L. Rodríguez</ThemedText>
+            <ThemedText style={styles.caseTime}>Recibido hace 4 horas</ThemedText>
+          </View>
+        </ThemedView>
+
       </ThemedView>
 
     </ParallaxScrollView>
@@ -117,6 +136,12 @@ const styles = StyleSheet.create({
   headerTitle: {
     color: '#2E7BC6',
     fontWeight: 'bold',
+  },
+  headerSubtitle: {
+    color: '#000000ff',
+    fontSize: 14,
+    textAlign: 'center',
+    marginTop: 4,
   },
 
   // Section styles
@@ -217,5 +242,16 @@ const styles = StyleSheet.create({
     color: '#999',
     fontSize: 12,
     marginTop: 4,
+  },
+
+  // Time container
+  userHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  sectionTime: {
+    alignItems: 'flex-end',
   },
 });

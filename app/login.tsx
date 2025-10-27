@@ -11,6 +11,7 @@ import {
   View,
 } from 'react-native';
 
+import CurrentTime from '@/components/current-time';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
@@ -62,12 +63,24 @@ export default function LoginScreen() {
 
   return (
     <ThemedView style={styles.container}>
+      {/* Hora actual en la parte superior */}
+      <View style={styles.timeHeader}>
+        <CurrentTime 
+          style={styles.currentTime}
+          fontSize={16}
+          color="#2E7BC6"
+        />
+      </View>
+
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        style={styles.inner}
+        style={styles.formContainer}
       >
         <ThemedText type="title" style={styles.title}>
-          Bienvenido
+          Anatomía Patológica
+        </ThemedText>
+        <ThemedText type="subtitle" style={styles.subtitle}>
+          Sistema de Gestión Hospitalaria
         </ThemedText>
 
         <ThemedText style={styles.label}>Correo electrónico</ThemedText>
@@ -125,14 +138,31 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  timeHeader: {
+    alignSelf: 'stretch',
+    paddingHorizontal: 24,
+    paddingTop: 60,
+    paddingBottom: 20,
+    alignItems: 'flex-end',
+  },
+  currentTime: {
+    alignItems: 'flex-end',
+  },
+  formContainer: {
+    flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 24,
   },
-  inner: {
-    width: '100%',
-  },
   title: {
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  subtitle: {
     marginBottom: 24,
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#666',
   },
   label: {
     marginBottom: 6,

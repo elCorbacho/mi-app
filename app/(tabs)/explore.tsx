@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
 
+import CurrentTime from '@/components/current-time';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -93,9 +94,17 @@ export default function ProfileScreen() {
       
       {/* Información del usuario logueado */}
       <ThemedView style={styles.section}>
-        <ThemedText type="subtitle" style={styles.sectionTitle}>
-          Usuario Activo
-        </ThemedText>
+        <View style={styles.sectionHeader}>
+          <ThemedText type="subtitle" style={styles.sectionTitle}>
+            Usuario Activo
+          </ThemedText>
+          <CurrentTime 
+            fontSize={12}
+            color="#666"
+            style={styles.sectionTime}
+          />
+        </View>
+        
         <View style={styles.infoCard}>
           <View style={styles.infoRow}>
             <Ionicons name="mail" size={20} color="#2E7BC6" />
@@ -226,7 +235,9 @@ export default function ProfileScreen() {
 
     </ParallaxScrollView>
   );
-}const styles = StyleSheet.create({
+}
+
+const styles = StyleSheet.create({
   // Header styles
   headerContainer: {
     flex: 1,
@@ -341,4 +352,17 @@ export default function ProfileScreen() {
     color: '#F44336',
     fontWeight: '600',
   },
+
+  // Time container
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  sectionTime: {
+    alignItems: 'flex-end',
+  },
+
+  // Logout button
 });
