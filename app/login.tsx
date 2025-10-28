@@ -37,6 +37,7 @@ export default function LoginScreen() {
     return /\S+@\S+\.\S+/.test(value);
   };
 
+  // Manejar el envío del formulario de login
   const onSubmit = async () => {
     setError(null);
     if (!validateEmail(email)) {
@@ -70,6 +71,7 @@ export default function LoginScreen() {
 
   const isValid = validateEmail(email); // Solo validar email para habilitar botón
 
+  // Renderizado del componente
   return (
     <ThemedView style={styles.container}>
       {/* Hora actual en la parte superior con animación */}

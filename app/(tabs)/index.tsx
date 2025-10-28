@@ -9,6 +9,8 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link } from 'expo-router';
 
+
+// Pantalla principal con scroll parallax, estadísticas y acciones rápidas
 export default function HomeScreen() {
   return (
     <TabSafeContent>

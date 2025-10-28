@@ -9,10 +9,13 @@ import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
+
+// Pantalla de perfil del usuario con información detallada y funcionalidad de logout
 export default function ProfileScreen() {
   const [userEmail, setUserEmail] = useState<string>('');
   const router = useRouter();
 
+  // Cargar el email del usuario al montar el componente
   useEffect(() => {
     loadUserEmail();
   }, []);
@@ -28,6 +31,7 @@ export default function ProfileScreen() {
     }
   };
 
+  // Manejar el cierre de sesión con confirmación
   const handleLogout = () => {
     Alert.alert(
       'Cerrar Sesión',
