@@ -2,6 +2,8 @@
 
 Sistema móvil para la gestión de casos de anatomía patológica desarrollado con React Native y Expo.
 
+
+
 ## 📋 Descripción
 
 Aplicación móvil profesional diseñada para patólogos y personal médico especializado que permite gestionar casos, revisar informes y mantener un seguimiento de diagnósticos médicos con animaciones modernas e interfaz intuitiva.
@@ -31,6 +33,14 @@ npx expo start
 - **🤖 Android**: Presionar `a`
 - **🍎 iOS**: Presionar `i`
 - **🌐 Web**: Presionar `w`
+
+## 🎬 Demostración
+
+Puedes ver una demostración de la app (video) en Google Drive:
+
+[Ver demostración de la app](https://drive.google.com/file/d/1E1_DHXrUpL4nM3gP4YVO_4MbsBZvERKH/view?usp=sharing)
+
+Abre el enlace en tu navegador o en la app de Google Drive para reproducir el video.
 
 ## 🔐 Credenciales de Acceso
 
