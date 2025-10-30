@@ -61,7 +61,7 @@ export default function LoginScreen() {
         // no bloquear la navegación si falla el guardado
       }
 
-      router.push('/(tabs)'); // navegar a las tabs después del login
+      router.replace('/(tabs)'); // navegar a las tabs después del login
     } catch {
       setError('Error al iniciar sesión');
     } finally {
