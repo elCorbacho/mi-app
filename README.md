@@ -1,5 +1,4 @@
-# 🏥 Sistema de Anatomía Patológica (Evaluacion 1 desarrollo movil)
-
+# 🏥 Sistema de Anatomía Patológica (Evaluacion 1 desarrollo movil) V1 ENTREGADO como prueba
 Sistema móvil para la gestión de casos de anatomía patológica desarrollado con React Native y Expo.
 
 
